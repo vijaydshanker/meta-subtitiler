@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016
+ * All Rights Reserved @ Codesode
+ */
+
 /**
  * All Rights Reserved
  */
@@ -21,22 +26,11 @@ public class SyncSubtitle {
 
     private List<Subtitle> subtitleLines;
 
-    public SyncSubtitle(String fileName) throws IOException {
+    public SyncSubtitle(File fileName) throws IOException {
         this.subtitleLines = new FileParser().loadSubtitles(fileName);
     }
 
-    public static void main(String[] args) {
-        String fileName = "C:\\Users\\HCL\\Downloads\\the.hateful.eight.(2015).eng.1cd.(6456389)\\The.Hateful.Eight" +
-                ".2015.DVDScr.XVID.AC3.HQ.Hive-CM8.srt";
-
-        try {
-            new SyncSubtitle(fileName).addSeconds(-1).writeTo(new File("test.srt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private SyncSubtitle addSeconds(int secondsToAdd) {
+    public SyncSubtitle addSeconds(int secondsToAdd) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss,SSS");
 
@@ -55,12 +49,12 @@ public class SyncSubtitle {
         return this;
     }
 
-    private void writeTo(File file) throws IOException {
+    public void writeTo(File file) throws IOException {
 
         //make sure file exists or new file is created
         FileUtils.touch(file);
 
-        List<String> lines = new LinkedList<String>();
+        List<String> lines = new LinkedList<>();
 
         for (Subtitle subtitle : this.subtitleLines) {
             lines.add(String.valueOf(subtitle.getId()));

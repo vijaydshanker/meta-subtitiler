@@ -1,9 +1,14 @@
+/*
+ * Copyright (c) 2016
+ * All Rights Reserved @ Codesode
+ */
+
 group 'com.codesode.subs'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -12,5 +17,6 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'commons-io:commons-io:2.4'
+    compile 'commons-cli:commons-cli:1.3'
     compile 'commons-lang:commons-lang:2.6'
 }

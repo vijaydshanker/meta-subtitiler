@@ -16,7 +16,7 @@ import java.util.regex.*;
 /**
  * Parse subtitle file with extension (srt) and prepare object model.
  *
- * @auther Vijay Shanker Dubey
+ * @author Vijay Shanker Dubey
  */
 public class FileParser {
 
@@ -24,13 +24,13 @@ public class FileParser {
             "(\\d{2}:\\d{2}:\\d{2},\\d{3}) --> (\\d{2}:\\d{2}:\\d{2}," + "\\d{3})");
 
     /**
-     * @param sourceFile
-     * @return
+     * @param sourceFile file reference
+     * @return list of all subtitles in the file
      * @throws IOException
      */
-    public List<Subtitle> loadSubtitles(String sourceFile) throws IOException {
+    public List<Subtitle> loadSubtitles(File sourceFile) throws IOException {
 
-        List<Subtitle> subtitlesContainer = new ArrayList<Subtitle>();
+        List<Subtitle> subtitlesContainer = new ArrayList<>();
 
         Iterator<String> iterator = readLines(sourceFile).iterator();
 
@@ -72,14 +72,10 @@ public class FileParser {
         return subtitlesContainer;
     }
 
-    private List<String> readLines(String sourceFile) throws IOException {
+    private List<String> readLines(File sourceFile) throws IOException {
 
-        File file = new File(sourceFile);
+        FileReader reader = new FileReader(sourceFile);
 
-        FileReader reader = new FileReader(file);
-
-        List<String> lines = IOUtils.readLines(reader);
-
-        return lines;
+        return IOUtils.readLines(reader);
     }
 }
